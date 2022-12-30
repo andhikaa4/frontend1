@@ -20,8 +20,8 @@ npm start //to start the project//
 
 ## Manual Test Case
 
-markup :    - Search should be able to reach all off the available data type
-            - should be able to select either gender or city
-            - should be able do CRUD action
-            - Pagination Works properly
+- Search should be able to reach all off the available data type
+- should be able to select either gender or city
+- should be able do CRUD action
+- Pagination Works properly
 
