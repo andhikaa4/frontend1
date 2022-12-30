@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import Auth from './component/pages/Auth';
+import Home from './component/pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ backgroundColor: '#ffe876', minHeight: '100vh' }}>
+      <div style={{backgroundImage:`url('https://png.pngtree.com/png-clipart/20211128/original/pngtree-set-of-creativity-doodle-vector-png-image_6955765.png')`, backgroundSize:'200px', minHeight: '100vh' }}>
+        <Routes>
+          <Route path='/' element={<Auth />} />
+          <Route path='/home' element={<Home />} />
+        </Routes>
+
+      </div>
     </div>
   );
 }
