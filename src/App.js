@@ -4,7 +4,7 @@ import { DraggableWord } from './component/CT Corp'
 export default function App() {
   return (
     <div>
-      <DraggableWord/>
+      <DraggableWord />
     </div>
   )
 }

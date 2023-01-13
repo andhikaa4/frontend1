@@ -1,18 +1,20 @@
-import React, { useRef, useState } from 'react';
-import Draggable from 'react-draggable';
+import React, {  useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import Modal from 'react-modal';
+import DraggableDiv from '../Test file';
 
 export const DraggableWord = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
+  
   const divRef = useRef(null);
 
   const [color, setColor] = useState("black");
   const [word, setWord] = useState('DRAGGABLE')
   const letter = word.split('')
   const [fontSize, setFontSize] = useState(30);
+
   const handleChange = (e) => {
     setFontSize(e.target.value);
   }
@@ -28,7 +30,7 @@ export const DraggableWord = () => {
 
   function handleSave() {
     html2canvas(divRef.current).then(canvas => {
-      setImgSrc(canvas.toDataURL());
+      setImgSrc(canvas.toDataURL('image'));
       setModalIsOpen(true);
     });
   }
@@ -36,7 +38,7 @@ export const DraggableWord = () => {
   function handleDownload() {
     const link = document.createElement('a');
     link.href = imgSrc;
-    link.download = "screenshot.png";
+    link.download = `${word}.png`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -53,18 +55,20 @@ export const DraggableWord = () => {
     },
   };
 
+
+
   return (
     <div className='d-flex justify-content-center py-5' >
       <div className=' w-50' >
         <div className=' bg-primary bg-gradient bg-opacity-50 px-5 py-2' style={{ height: '150px' }}>
           <p className='m-0 text-center' >Letter Draggable*</p>
-          <div ref={divRef} className='fs-1 fw-bold d-flex justify-content-center w-100 h-100 '>
-            {letter.map((item) => (
-
-              <Draggable>
-                <p style={{ cursor: 'grab', fontSize: `${fontSize}px`, color: color, }} >{item}</p>
-              </Draggable>
+          <div ref={divRef} className='fs-1 fw-bold d-flex justify-content-center w-100 h-100 '>      
+            {letter?.map((item, index) => (
+                <div id="my-div"  key={index} style={{cursor:'grab'}} >
+                    <DraggableDiv item={item} id={index} fontSize={fontSize} color={color} />
+                </div>
             ))}
+
           </div>
         </div>
         <div className='d-flex flex-column align-items-center mt-4 ' style={{ gap: '20px' }} >
@@ -92,7 +96,8 @@ export const DraggableWord = () => {
             onRequestClose={() => setModalIsOpen(false)}
           >
             <img src={imgSrc} alt='...' /><br/>
-            <div className='d-flex justify-content-center' >
+            <div className='d-flex justify-content-center flex-column' >
+                            <p className='text-center text-wrap'>Right Click and choose save as to input the file name</p>
               <button className='btn btn-success' onClick={handleDownload}>Download</button>
             </div>
           </Modal>
